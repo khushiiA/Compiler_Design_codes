@@ -1,0 +1,46 @@
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+
+using namespace std;
+
+char input[20];
+char op, op1, op2;
+
+char temp[5]={'v','w','x','y','z'};
+int temp_pointer=0;
+
+void scan()
+{
+    for(int i=0;i<strlen(input)-2; i++)
+    {
+        if((input[i]=='+')||(input[i]=='-')||(input[i]=='*')||(input[i]=='/'))
+        {
+            op=input[i];
+            op1=input[i-1];
+            op2=input[i+1];
+
+            cout<<"\n"<<temp[temp_pointer]<<"="<<op1<<op<<op2<<"\n";
+            input[i+1]=temp[temp_pointer++];
+        }
+        if(i==(strlen(input)-3))cout<<"\n"<<input[0]<<"="<<input[i]<<input[i+1]<<input[i+2]<<"\n";
+    }
+
+}
+
+int main()
+{
+   cout<<"\nEnter expression:";
+   cin>>input;
+   input[strlen(input)]='\0';
+   scan();
+
+   return 0;
+}
+// Enter expression:a=b+c*d/e
+
+// v=b+c
+
+// w=v*d
+
+// a=w/e
